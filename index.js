@@ -3,8 +3,8 @@ var express = require('express');
 const Agent = require('./node-agent-sdk/AgentSDK');
 var echoAgent = new Agent({
   accountId: '13099967',
-  username: 'petriccione.dario@vodafone.com',
-  password: 'VF2017!!'
+  username: 'botLivePerson',
+  password: 'Password123!!!'
 });
 
 var bearer = "";
