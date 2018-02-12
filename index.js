@@ -422,7 +422,6 @@ function proceedWithActions(){
 		 			}
 		 		}
 				else if((answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer") && (answer[m].info.latestSkillId === limboskill)){
-					console.log(JSON.stringify(answer[m].messageRecords));
 					console.log("waking up");
 					wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);					
 				}
