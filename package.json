@@ -12,7 +12,7 @@
   "dependencies": {
     "prompt-sync": "^4.1.5",
     "express": "4.13.3",
-    "bar": "file:./node-agent-sdk/AgentSDK"
+    "./node-agent-sdk/AgentSDK": "file:./node-agent-sdk/AgentSDK"
   },
   "repository": {
     "type": "git",
