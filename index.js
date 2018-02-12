@@ -1,6 +1,6 @@
 
 var express = require('express');
-const Agent = require('./node-agent-sdk/AgentSDK');
+const Agent = require('node-agent-sdk');
 var echoAgent = new Agent({
   accountId: '13099967',
   username: 'botLivePerson',
