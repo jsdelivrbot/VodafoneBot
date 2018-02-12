@@ -1,5 +1,5 @@
 
-
+var express = require('express');
 const Agent = require('./node-agent-sdk/AgentSDK');
 var echoAgent = new Agent({
   accountId: '13099967',
@@ -20,6 +20,31 @@ var agentJSON = {};
 
 
 
+
+var app = express();
+app.listen(process.env.PORT);
+app.set('port', (process.env.PORT || 5000));
+
+// Required to allow access to the service across different domains
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Content-Type', 'text/plain');
+  next();
+});
+
+
+botAgent.on('closed', data => {
+	console.log('socket closed', data);
+	echoAgent.reconnect();
+});
+
+
+
+
+setInterval(function() {
+    https.get("https://paddypowerbot.herokuapp.com/");
+}, 600000); // every 5 minutes (300000) every 10 minutes (600000)
 
 
 function retrieveSkills(){
