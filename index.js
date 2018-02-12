@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
 });
 
 
-botAgent.on('closed', data => {
+echoAgent.on('closed', data => {
 	console.log('socket closed', data);
 	echoAgent.reconnect();
 });
