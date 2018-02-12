@@ -43,7 +43,7 @@ botAgent.on('closed', data => {
 
 
 setInterval(function() {
-    https.get("https://paddypowerbot.herokuapp.com/");
+    https.get("https://git.heroku.com/vodafonebotdario.git");
 }, 600000); // every 5 minutes (300000) every 10 minutes (600000)
 
 
