@@ -125,7 +125,17 @@ function closeChat(dialogID, agentID){
 			}, (e, resp) => {
    				if (e) { 
 					console.error(e) 
-    			}
+    				}
+				else if (resp) { 
+					echoAgent.updateConversationField({
+            					conversationId: dialogID,
+            					conversationField: [{
+                    					field: "ConversationStateField",
+                    					conversationState: "CLOSE"
+                				}]
+        				});
+
+    				}
 		});
 
 /*
