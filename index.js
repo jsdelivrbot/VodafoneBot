@@ -18,6 +18,10 @@ var accountNumber = 13099967;
 var botID = 1051214932;
 var customBotID = accountNumber + "." + botID;
 var agentJSON = {};
+var skill = "xyz";
+var convID = "682e0bbe-f7af-477b-97ba-461a6bd91780";
+var yesno = "";
+var comments = "";
 
 
 
@@ -33,6 +37,23 @@ app.use(function(req, res, next) {
   res.header('Content-Type', 'text/plain');
   next();
 });
+
+
+app.get('/add', function(req, res, next) {
+
+	yesno = req.query.yesno;
+	comments = req.query.comments;
+	convID = req.query.convID;
+	skill = req.query.skill;
+	console.log("***" + yesno + "***" + comments + "***" + convID + "***" + skill + "***");
+	skill = convertSkill();
+	markConv();
+  
+	
+	// Output result in a JSON object
+	res.send({'result': convID});
+});
+
 
 
 echoAgent.on('closed', data => {
@@ -66,6 +87,110 @@ function retrieveSkills(){
 		activeSkills = b;
 
 	});
+
+
+}
+
+
+function convertSkill(){
+	
+	var found = 0;
+	for (var i = 0; i < activeSkills.length; i++) {
+		if(activeSkills[i].name === skill){
+			found = 1;
+console.log("found");
+			console.log(activeSkills[i].name + " <--> " + activeSkills[i].id);
+			return activeSkills[i].id;
+		}
+	}
+	if(!found){
+console.log("not found");
+		return -1;
+	}
+
+
+}
+
+
+
+
+function markConv(){
+
+	const metadata = [{
+		type: 'BotResponse', // Bot context information about the last consumer message
+		externalConversationId: convID,
+		businessCases: [
+			'RightNow_Categorization' // identified capability
+		],
+		intents: [ // Last consumer message identified intents
+		{
+			id: 'yesno',
+			name: yesno,
+			confidenceScore: 1
+		},
+		{
+			id: 'comments',
+			name: comments,
+			confidenceScore: 1
+		}]
+	}];
+
+
+
+
+	echoAgent.updateConversationField({
+		conversationId: convID,
+		conversationField: [{
+			field: "ParticipantsChange",
+			type: "ADD",
+			role: "READER"
+		}]
+		}, function(err) {
+			if(err) {
+				console.log(err);
+			} else {
+				console.log("joining completed");
+			}
+	});
+
+
+
+
+
+	echoAgent.updateConversationField({
+		conversationId: convID,
+		conversationField: [{
+			field: "Skill",
+			type: "UPDATE",
+			skill: skill
+		}]
+		}, null, metadata, function(err) {
+			if(err) {
+				console.log(err);
+			} else {
+				console.log("transfered completed");
+			}
+	});
+
+
+
+
+	echoAgent.updateConversationField({
+		conversationId: convID,
+		conversationField: [{
+			field: "ParticipantsChange",
+			type: "REMOVE",
+			role: "READER"
+		}]
+		}, function(err) {
+			if(err) {
+				console.log(err);
+			} else {
+				console.log("leave completed");
+			}
+	});
+
+
 
 
 }
