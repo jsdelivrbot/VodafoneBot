@@ -234,6 +234,22 @@ function limboChat(dialogID, agentID) {
 					console.error(e) 
     			}
 		});
+	
+		
+		echoAgent.updateConversationField({
+			'conversationId': dialogID,
+			'conversationField': [
+				{
+				field: "TTRField",
+				type: "CUSTOM",
+				"value": 0
+				}]
+
+			}, (e, resp) => {
+   				if (e) { 
+					console.error(e) 
+    			}
+		});
 
 
 
