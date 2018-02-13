@@ -98,13 +98,10 @@ function convertSkill(){
 	for (var i = 0; i < activeSkills.length; i++) {
 		if(activeSkills[i].name === skill){
 			found = 1;
-console.log("found");
-			console.log(activeSkills[i].name + " <--> " + activeSkills[i].id);
 			return activeSkills[i].id;
 		}
 	}
 	if(!found){
-console.log("not found");
 		return -1;
 	}
 
@@ -149,7 +146,7 @@ function markConv(){
 			if(err) {
 				console.log(err);
 			} else {
-				console.log("joining completed");
+				// console.log("joining completed");
 			}
 	});
 
@@ -168,7 +165,7 @@ function markConv(){
 			if(err) {
 				console.log(err);
 			} else {
-				console.log("transfered completed");
+				// console.log("transfered completed");
 			}
 	});
 
@@ -186,7 +183,7 @@ function markConv(){
 			if(err) {
 				console.log(err);
 			} else {
-				console.log("leave completed");
+				// console.log("leave completed");
 			}
 	});
 
