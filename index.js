@@ -294,7 +294,7 @@ function wakeUpChat(dialogID, agentName) {
 
 		var isSent = 0;
 
-		transferToActualSkill = 0;
+		var transferToActualSkill = 0;
 		var skillPreviousAgent = "***" + agentName;
 		if(checkIfConnected(agentName)){
 			for (var m = 0; m < (activeSkills.length); m++){
