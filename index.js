@@ -55,6 +55,13 @@ app.get('/add', function(req, res, next) {
 });
 
 
+app.get('/ping', function(req, res, next) {
+
+	// Output result in a JSON object
+	res.send({'result': convID});
+});
+
+
 
 echoAgent.on('closed', data => {
 	console.log('socket closed', data);
