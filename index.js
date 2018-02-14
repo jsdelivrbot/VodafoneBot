@@ -367,7 +367,7 @@ function limboChat(dialogID, agentID) {
     			}
 		});
 	
-		
+/*		
 		echoAgent.updateConversationField({
 			'conversationId': dialogID,
 			'conversationField': [
@@ -384,7 +384,7 @@ function limboChat(dialogID, agentID) {
 		});
 
 
-
+*/
 
 		
 		echoAgent.updateConversationField({
