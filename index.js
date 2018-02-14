@@ -320,20 +320,6 @@ function limboChat(dialogID, agentID) {
 	var agentToRemove = accountNumber + "." + agentID
 
 		
-		echoAgent.updateConversationField({
-			'conversationId': dialogID,
-			'conversationField': [
-				{
-				field: 'ParticipantsChange',
-				type: 'ADD',
-				userId: customBotID,
-				role: 'READER'
-				}]
-			}, (e, resp) => {
-   				if (e) { 
-					console.error(e) 
-    			}
-		});
 
 		
 		echoAgent.updateConversationField({
@@ -351,6 +337,26 @@ function limboChat(dialogID, agentID) {
     			}
 		});
 
+
+
+
+
+		echoAgent.updateConversationField({
+			'conversationId': dialogID,
+			'conversationField': [
+				{
+				field: 'ParticipantsChange',
+				type: 'ADD',
+				userId: customBotID,
+				role: 'ASSIGNED_AGENT'
+				}]
+			}, (e, resp) => {
+   				if (e) { 
+					console.error(e) 
+    			}
+		});
+
+
 		
 		echoAgent.updateConversationField({
 			'conversationId': dialogID,
@@ -364,27 +370,28 @@ function limboChat(dialogID, agentID) {
 			}, (e, resp) => {
    				if (e) { 
 					console.error(e) 
-    			}
+    			} else if (resp){
+
+				echoAgent.updateConversationField({
+					'conversationId': dialogID,
+					'conversationField': [
+						{
+						field: "ManualETTR",
+						time: Date.now()
+						}]
+					}, (e, resp) => {
+   						if (e) { 
+							console.error(e) 
+    						}
+				});
+
+
+			}
 		});
 	
-/*		
-		echoAgent.updateConversationField({
-			'conversationId': dialogID,
-			'conversationField': [
-				{
-				field: "TTRField",
-				type: "CUSTOM",
-				"value": 0
-				}]
-
-			}, (e, resp) => {
-   				if (e) { 
-					console.error(e) 
-    			}
-		});
+		
 
 
-*/
 
 		
 		echoAgent.updateConversationField({
@@ -395,7 +402,7 @@ function limboChat(dialogID, agentID) {
 				field: 'ParticipantsChange',
 				type: 'REMOVE',
 				userId: customBotID,
-				role: 'READER'
+				role: 'ASSIGNED_AGENT'
 				}]
 
 			}, (e, resp) => {
@@ -404,6 +411,8 @@ function limboChat(dialogID, agentID) {
     			}
     			console.log("Transfering..." , resp)
 		});
+
+
 
 
 
