@@ -294,7 +294,7 @@ function closeChat(dialogID, agentID){
 		});
 
 
-*/
+
 
 
 
@@ -306,7 +306,7 @@ function closeChat(dialogID, agentID){
                 }]
         });
 
-
+*/
 
 }
 
