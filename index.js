@@ -119,6 +119,8 @@ function convertSkill(){
 
 
 function markConv(){
+	
+	console.log("***tagging");
 
 	const metadata = [{
 		type: 'BotResponse', // Bot context information about the last consumer message
@@ -576,17 +578,17 @@ function proceedWithActions(){
 					var whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
 					if (answer[m].info.latestSkillId !== limboskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
 						if((whatTime < moveToLimbo) && (answer[m].info.latestSkillId !== limboskill)){
-							console.log("moving to Limbo");
+							console.log("***Limbo");
 							limboChat(answer[m].info.conversationId, answer[m].info.latestAgentId);
 						}
 					}
 					if (whatTime < closure){
-						console.log("closing");
+						console.log("***closing");
 						closeChat(answer[m].info.conversationId, answer[m].info.latestAgentId);
 		 			}
 		 		}
 				else if((answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer") && (answer[m].info.latestSkillId === limboskill)){
-					console.log("waking up");
+					console.log("***wakingup");
 					wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);					
 				}
 		 	}
