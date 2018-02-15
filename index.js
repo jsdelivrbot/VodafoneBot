@@ -574,7 +574,7 @@ function proceedWithActions(){
 					var moveToLimbo = (Date.now() - (1000*60*10));            // timestamp "move to Limbo" conversation
 					var closure = (Date.now() - (1000*60*60*24));            // timestamp closure conversation
 					var whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
-					if (answer[m].info.latestSkillId !== limboskill && answer[m].info.latestAgentLoginName !== "botLivePerson"){
+					if (answer[m].info.latestSkillId !== limboskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
 						if((whatTime < moveToLimbo) && (answer[m].info.latestSkillId !== limboskill)){
 							console.log("moving to Limbo");
 							limboChat(answer[m].info.conversationId, answer[m].info.latestAgentId);
