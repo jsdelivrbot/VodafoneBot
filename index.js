@@ -1,7 +1,7 @@
 
 var https = require('https');
 var express = require('express');
-const Agent = require('./node-agent-sdk/AgentSDK');
+const Agent = require('node-agent-sdk').Agent;
 var echoAgent = new Agent({
   accountId: '13099967',
   username: 'botLivePerson',
