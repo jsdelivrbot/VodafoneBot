@@ -238,75 +238,9 @@ function retrieveAgentsLogged(){
 
 
 
-function closeChat(dialogID, agentID){
+function closeChat(dialogID){
 
-	var agentToRemove = accountNumber + "." + agentID
-
-
-		
-		echoAgent.updateConversationField({
-			'conversationId': dialogID,
-			'conversationField': [
-				{
-				field: 'ParticipantsChange',
-				type: 'ADD',
-				userId: customBotID,
-				role: 'ASSIGNED_AGENT'
-				}]
-			}, (e, resp) => {
-   				if (e) { 
-					console.error(e) 
-    				}
-				else if (resp) { 
-					echoAgent.updateConversationField({
-            					conversationId: dialogID,
-            					conversationField: [{
-                    					field: "ConversationStateField",
-                    					conversationState: "CLOSE"
-                				}]
-        				});
-
-    				}
-		});
-
-/*
-		echoAgent.updateConversationField({
-			'conversationId': dialogID,
-			'conversationField': [
-				{
-				field: 'ParticipantsChange',
-				type: 'REMOVE',
-				userId: agentToRemove,
-				role: 'ASSIGNED_AGENT'
-				}]
-			}, (e, resp) => {
-   				if (e) { 
-					console.error(e) 
-    			}
-		});
-
-
-		
-		echoAgent.updateConversationField({
-			'conversationId': dialogID,
-			'conversationField': [
-				{
-				field: 'ParticipantsChange',
-				type: 'REMOVE',
-				userId: customBotID,
-				role: 'MANAGER'
-				}]
-			}, (e, resp) => {
-   				if (e) { 
-					console.error(e) 
-    			}
-		});
-
-
-
-
-
-
+	
 	echoAgent.updateConversationField({
             conversationId: dialogID,
             conversationField: [{
@@ -315,7 +249,6 @@ function closeChat(dialogID, agentID){
                 }]
         });
 
-*/
 
 }
 
@@ -584,7 +517,7 @@ function proceedWithActions(){
 					}
 					if (whatTime < closure){
 						console.log("***closing");
-						closeChat(answer[m].info.conversationId, answer[m].info.latestAgentId);
+						closeChat(answer[m].info.conversationId);
 		 			}
 		 		}
 				else if((answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer") && (answer[m].info.latestSkillId === limboskill)){
