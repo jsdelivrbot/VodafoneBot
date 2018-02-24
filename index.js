@@ -564,19 +564,23 @@ function proceedWithActions(){
 		var howManyMessages = answer[m].messageRecords.length;
 			if(howManyMessages){
 				
-				/*******************************************************
 				
 				
+				var checkstatus = "something";
 				if(answer[m].hasOwnProperty('transfers')){
 					if (typeof answer[m].transfers !== 'undefined' && answer[m].transfers.length > 0) {
 						var arraylength = answer[m].transfers.length;
 						for (var z = (arraylength -1); z > -1; z--){
 							if(answer[m].transfers[z].hasOwnProperty('contextData')){
 								if(answer[m].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
-									yesno = answer[m].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
-									if (yesno !== undefined || yesno !== "---"){
-										comments = answer[m].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
+									checkstatus = answer[m].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
+									if (checkstatus === "risvegliata"){
 										z = 0;
+									}
+									else if (!isNaN(parseFloat(checkstatus)){
+										if((answer[m].transfers[z].timeL + (parseFloat(checkstatus)*60*1000))  < (Date.now())){
+											console.log("this one is to transfer");
+										}
 									}
 											      
 								}
@@ -588,7 +592,7 @@ function proceedWithActions(){
 				
 				
 				
-				*******************************************************/
+				
 				
 				
 				
