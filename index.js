@@ -595,7 +595,7 @@ function proceedWithActions(){
 				
 				
 				
-				
+				/***
 				
 				
 				
@@ -618,6 +618,11 @@ function proceedWithActions(){
 					console.log("***wakingup");
 					wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);					
 				}
+				
+				
+				***/
+				
+				
 		 	}
 
 	}
