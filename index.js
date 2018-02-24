@@ -579,7 +579,7 @@ function proceedWithActions(){
 									}
 									else if (!isNaN(parseFloat(checkstatus))){
 										if((answer[m].transfers[z].timeL + (parseFloat(checkstatus)*60*1000))  < (Date.now())){
-											console.log("this one is to transfer");
+											wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);
 										}
 									}
 											      
