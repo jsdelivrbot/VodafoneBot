@@ -577,7 +577,7 @@ function proceedWithActions(){
 									if (checkstatus === "risvegliata"){
 										z = 0;
 									}
-									else if (!isNaN(parseFloat(checkstatus)){
+									else if (!isNaN(parseFloat(checkstatus))){
 										if((answer[m].transfers[z].timeL + (parseFloat(checkstatus)*60*1000))  < (Date.now())){
 											console.log("this one is to transfer");
 										}
