@@ -145,7 +145,7 @@ function markConv(){
 			id: 'minutes',
 			name: minutes,
 			confidenceScore: 1
-		}]]
+		}]
 	}];
 
 
@@ -290,7 +290,7 @@ function limboChat(dialogID, agentID) {
 				id: 'minutes',
 				name: "limbo",
 				confidenceScore: 1
-			}]]
+			}]
 		}];
 
 
@@ -448,7 +448,7 @@ function wakeUpChat(dialogID, agentName) {
 				id: 'minutes',
 				name: "risvegliata",
 				confidenceScore: 1
-			}]]
+			}]
 		}];
 
 		var transferToActualSkill = 0;
