@@ -22,6 +22,7 @@ var skill = "xyz";
 var convID = "682e0bbe-f7af-477b-97ba-461a6bd91780";
 var yesno = "";
 var comments = "";
+var minutes = "";
 
 
 
@@ -43,6 +44,7 @@ app.get('/add', function(req, res, next) {
 
 	yesno = req.query.yesno;
 	comments = req.query.comments;
+	minutes = req.query.minutes;
 	convID = req.query.convID;
 	skill = req.query.skill;
 	console.log("***" + yesno + "***" + comments + "***" + convID + "***" + skill + "***");
@@ -138,7 +140,12 @@ function markConv(){
 			id: 'comments',
 			name: comments,
 			confidenceScore: 1
-		}]
+		},
+		{
+			id: 'minutes',
+			name: minutes,
+			confidenceScore: 1
+		}]]
 	}];
 
 
@@ -260,6 +267,32 @@ function closeChat(dialogID){
 function limboChat(dialogID, agentID) {
 
 	var agentToRemove = accountNumber + "." + agentID
+	
+	
+		const metadata = [{
+			type: 'BotResponse', // Bot context information about the last consumer message
+			externalConversationId: dialogID,
+			businessCases: [
+				'RightNow_Categorization' // identified capability
+			],
+			intents: [ // Last consumer message identified intents
+			{
+				id: 'yesno',
+				name: "",
+				confidenceScore: 1
+			},
+			{
+				id: 'comments',
+				name: "",
+				confidenceScore: 1
+			},
+			{
+				id: 'minutes',
+				name: "limbo",
+				confidenceScore: 1
+			}]]
+		}];
+
 
 		
 
@@ -309,10 +342,10 @@ function limboChat(dialogID, agentID) {
 				skill: limboskill
 				}]
 
-			}, (e, resp) => {
-   				if (e) { 
-					console.error(e) 
-    			} else if (resp){
+			}, null, metadata, function(err) {
+   				if (err) { 
+					console.error(err) 
+    				} else{
 
 				echoAgent.updateConversationField({
 					'conversationId': dialogID,
@@ -392,6 +425,31 @@ function checkIfConnected(agentName){
 function wakeUpChat(dialogID, agentName) {
 
 		var isSent = 0;
+	
+	
+		const metadata = [{
+			type: 'BotResponse', // Bot context information about the last consumer message
+			externalConversationId: dialogID,
+			businessCases: [
+				'RightNow_Categorization' // identified capability
+			],
+			intents: [ // Last consumer message identified intents
+			{
+				id: 'yesno',
+				name: "",
+				confidenceScore: 1
+			},
+			{
+				id: 'comments',
+				name: "",
+				confidenceScore: 1
+			},
+			{
+				id: 'minutes',
+				name: "risvegliata",
+				confidenceScore: 1
+			}]]
+		}];
 
 		var transferToActualSkill = 0;
 		var skillPreviousAgent = "***" + agentName;
@@ -458,9 +516,9 @@ function wakeUpChat(dialogID, agentName) {
 				skill: transferToActualSkill
 				}]
 
-			}, (e, resp) => {
-   				if (e) { 
-					console.error(e) 
+			}, null, metadata, function(err) {
+   				if (err) { 
+					console.error(err) 
     			}
 		});
 
