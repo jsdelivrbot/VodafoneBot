@@ -278,12 +278,12 @@ function limboChat(dialogID, agentID) {
 			intents: [ // Last consumer message identified intents
 			{
 				id: 'yesno',
-				name: "",
+				name: "---",
 				confidenceScore: 1
 			},
 			{
 				id: 'comments',
-				name: "",
+				name: "---",
 				confidenceScore: 1
 			},
 			{
@@ -436,12 +436,12 @@ function wakeUpChat(dialogID, agentName) {
 			intents: [ // Last consumer message identified intents
 			{
 				id: 'yesno',
-				name: "",
+				name: "---",
 				confidenceScore: 1
 			},
 			{
 				id: 'comments',
-				name: "",
+				name: "---",
 				confidenceScore: 1
 			},
 			{
