@@ -563,6 +563,38 @@ function proceedWithActions(){
 
 		var howManyMessages = answer[m].messageRecords.length;
 			if(howManyMessages){
+				
+				/*******************************************************
+				
+				
+				if(answer[m].hasOwnProperty('transfers')){
+					if (typeof answer[m].transfers !== 'undefined' && answer[m].transfers.length > 0) {
+						var arraylength = answer[m].transfers.length;
+						for (var z = (arraylength -1); z > -1; z--){
+							if(answer[m].transfers[z].hasOwnProperty('contextData')){
+								if(answer[m].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
+									yesno = answer[m].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
+									if (yesno !== undefined || yesno !== "---"){
+										comments = answer[m].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
+										z = 0;
+									}
+											      
+								}
+							}
+						}
+					}
+				}
+				
+				
+				
+				
+				*******************************************************/
+				
+				
+				
+				
+				
+				
 		 		if (answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Agent"){
 					var moveToLimbo = (Date.now() - (1000*60*10));            // timestamp "move to Limbo" conversation
 					var closure = (Date.now() - (1000*60*60*24));            // timestamp closure conversation
