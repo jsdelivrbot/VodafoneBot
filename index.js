@@ -483,7 +483,7 @@ function wakeUpChat(dialogID, agentName) {
     			}
 		});
 
-
+/*********
 
 		if((transferToActualSkill === risvegliataskill) && (!isSent)){
 
@@ -505,6 +505,8 @@ function wakeUpChat(dialogID, agentName) {
 
 
 		}
+		
+*************/
 
 		
 		echoAgent.updateConversationField({
