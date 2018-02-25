@@ -590,13 +590,15 @@ function proceedWithActions(){
 							}
 						}
 					}
+					console.log(moved);
 				}
 				
 				
-				console.log(moved);
+				
 				
 				
 				if (!moved){
+					console.log(moved);
 
 		 			if (answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Agent"){
 						var moveToLimbo = (Date.now() - (1000*60*10));            // timestamp "move to Limbo" conversation
