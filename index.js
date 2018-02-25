@@ -593,7 +593,7 @@ function proceedWithActions(){
 				}
 				
 				
-				
+				console.log(moved);
 				
 				
 				if (!moved){
