@@ -578,6 +578,7 @@ function proceedWithActions(){
 									checkstatus = answer[m].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
 									if (checkstatus === "risvegliata"){
 										z = 0;
+										moved = 1;
 									}
 									else if (!isNaN(parseFloat(checkstatus))){
 										if((answer[m].transfers[z].timeL + (parseFloat(checkstatus)*60*1000))  < (Date.now())){
@@ -603,13 +604,13 @@ function proceedWithActions(){
 						var moveToLimbo = (Date.now() - (1000*60*10));            // timestamp "move to Limbo" conversation
 						var closure = (Date.now() - (1000*60*60*24));            // timestamp closure conversation
 						var whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
-						if (answer[m].info.latestSkillId !== limboskill && answer[m].info.latestSkillId !== risvegliataskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
+						if (answer[m].info.latestSkillId !== limboskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
 							if((whatTime < moveToLimbo) && (answer[m].info.latestSkillId !== limboskill)){
 								console.log("***Limbo");
 								limboChat(answer[m].info.conversationId, answer[m].info.latestAgentId);
 							}
 						}
-						if ((whatTime < closure) && answer[m].info.latestSkillId !== risvegliataskill){
+						if (whatTime < closure){
 							console.log("***closing");
 							closeChat(answer[m].info.conversationId);
 		 				}
