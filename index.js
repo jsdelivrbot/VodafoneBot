@@ -564,7 +564,7 @@ function proceedWithActions(){
 		var howManyMessages = answer[m].messageRecords.length;
 			if(howManyMessages){
 				
-				
+/********				
 				var moved = 0;
 				var checkstatus = "something";
 				if(answer[m].hasOwnProperty('transfers')){
@@ -598,6 +598,7 @@ function proceedWithActions(){
 				
 				if (!moved){
 
+******/
 		 			if (answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Agent"){
 						var moveToLimbo = (Date.now() - (1000*60*10));            // timestamp "move to Limbo" conversation
 						var closure = (Date.now() - (1000*60*60*24));            // timestamp closure conversation
@@ -618,7 +619,7 @@ function proceedWithActions(){
 						wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);					
 					}
 
-				}
+//				}
 				
 				
 		 	}
