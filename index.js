@@ -600,7 +600,7 @@ function proceedWithActions(){
 
 ******/
 		 			if (answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Agent"){
-						var moveToLimbo = (Date.now() - (1000*60*10));            // timestamp "move to Limbo" conversation
+						var moveToLimbo = (Date.now() - (1000*60*15));            // timestamp "move to Limbo" conversation
 						var closure = (Date.now() - (1000*60*60*24));            // timestamp closure conversation
 						var whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
 						if (answer[m].info.latestSkillId !== limboskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
