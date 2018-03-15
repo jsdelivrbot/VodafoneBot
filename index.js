@@ -563,65 +563,31 @@ function proceedWithActions(){
 
 		var howManyMessages = answer[m].messageRecords.length;
 			if(howManyMessages){
-				
-/********				
-				var moved = 0;
-				var checkstatus = "something";
-				if(answer[m].hasOwnProperty('transfers')){
-					if (typeof answer[m].transfers !== 'undefined' && answer[m].transfers.length > 0) {
-						var arraylength = answer[m].transfers.length;
-						for (var z = (arraylength -1); z > -1; z--){
-							if(answer[m].transfers[z].hasOwnProperty('contextData')){
-								if(answer[m].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
-									checkstatus = answer[m].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
-									if (checkstatus === "risvegliata"){
-										z = 0;
-										moved = 1;
-									}
-									else if (!isNaN(parseFloat(checkstatus))){
-										if((answer[m].transfers[z].timeL + (parseFloat(checkstatus)*60*1000))  < (Date.now())){
-											console.log("***custom_wakingup");
-											wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);
-											moved = 1;
-										}
-									}
-											      
-								}
-							}
+					
+				var moveToLimbo = (Date.now() - (1000*60*15));            // timestamp "move to Limbo" conversation
+				var closure = (Date.now() - (1000*60*60*24));            // timestamp closure conversation
+				var whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
+					
+				if((answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer") && (answer[m].info.latestSkillId === limboskill)){
+					console.log("***wakingup");
+					wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);
+				}
+				else{
+					if (answer[m].info.latestSkillId !== limboskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
+						if((whatTime < moveToLimbo) && (answer[m].info.latestSkillId !== limboskill)){
+							console.log("***Limbo");
+							limboChat(answer[m].info.conversationId, answer[m].info.latestAgentId);
 						}
 					}
-				}
 				
-				
-				
-				
-				
-				if (!moved){
-
-******/
 		 			if (answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Agent"){
-						var moveToLimbo = (Date.now() - (1000*60*15));            // timestamp "move to Limbo" conversation
-						var closure = (Date.now() - (1000*60*60*24));            // timestamp closure conversation
-						var whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
-						if (answer[m].info.latestSkillId !== limboskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
-							if((whatTime < moveToLimbo) && (answer[m].info.latestSkillId !== limboskill)){
-								console.log("***Limbo");
-								limboChat(answer[m].info.conversationId, answer[m].info.latestAgentId);
-							}
-						}
 						if (whatTime < closure){
 							console.log("***closing");
 							closeChat(answer[m].info.conversationId);
 		 				}
 		 			}
-					else if((answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer") && (answer[m].info.latestSkillId === limboskill)){
-						console.log("***wakingup");
-						wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);					
-					}
+				}
 
-//				}
-				
-				
 		 	}
 
 	}
