@@ -564,6 +564,14 @@ function proceedWithActions(){
 
 		var howManyMessages = answer[m].messageRecords.length;
 			if(howManyMessages){
+				var thisConversationHasResponse = 0;
+				for (var q = 0; q < howManyMessages; q++){
+					if(answer[m].messageRecords[q].sentBy === "Agent"){
+						thisConversationHasResponse = 1;
+						q = howManyMessages;
+					}
+					   
+				}
 				
 				if(answer[m].hasOwnProperty('transfers')){
 					if (typeof answer[m].transfers !== 'undefined' && answer[m].transfers.length > 0) {
@@ -579,7 +587,7 @@ function proceedWithActions(){
 				}
 
 					
-				var moveToLimbo = (Date.now() - (1000*60*15));            // timestamp "move to Limbo" conversation
+				var moveToLimbo = (Date.now() - (1000*60*1));            // timestamp "move to Limbo" conversation
 				var closure = (Date.now() - (1000*60*60*24));            // timestamp closure conversation
 				var whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
 					
@@ -588,7 +596,7 @@ function proceedWithActions(){
 					wakeUpChat(answer[m].info.conversationId, answer[m].info.latestAgentLoginName);
 				}
 				else{
-					if (sendToLimbo !== "noLimbo" && answer[m].info.latestSkillId !== limboskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
+					if (thisConversationHasResponse && sendToLimbo !== "noLimbo" && answer[m].info.latestSkillId !== limboskill && answer[m].messageRecords[(answer[m].messageRecords.length - 1)].participantId !== "1051214932"){
 						if((whatTime < moveToLimbo) && (answer[m].info.latestSkillId !== limboskill)){
 							console.log("***Limbo");
 							limboChat(answer[m].info.conversationId, answer[m].info.latestAgentId);
