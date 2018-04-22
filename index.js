@@ -5,7 +5,7 @@ const Agent = require('node-agent-sdk').Agent;
 var echoAgent = new Agent({
   accountId: '13099967',
   username: 'botLivePerson',
-  password: 'Password123!!!'
+  password: 'Mypassword123!!!'
 });
 
 var bearer = "";
